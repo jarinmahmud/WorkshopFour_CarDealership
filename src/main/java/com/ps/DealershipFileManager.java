@@ -1,41 +1,61 @@
 package com.ps;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import com.ps.Dealership;
-import com.ps.Vehicle;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DealershipFileManager {
+    private static final String FILE_PATH = "workData.txt";
 
-//get Dealership
+    public static Dealership getDealership() {
+        Dealership dealership = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String dealershipInfo = reader.readLine();
+            String[] dealershipData = dealershipInfo.split("\\|");
+            String name = dealershipData[0];
+            String address = dealershipData[1];
+            String phone = dealershipData[2];
+            dealership = new Dealership(name, address, phone);
 
-    // Method to read data from file and convert it to Dealership object
-    public static Dealership getDealership() throws IOException {
-//            Dealership dealership = new Dealership();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader("workData.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                // Assuming each line represents a vehicle in the format: make,model,year,price
-                String[] parts = line.split("\\|");
-//                    int vin = parts[0];
-//                    int year = parts[1];
-//                    int year = Integer.parseInt(parts[2]);
-//                    double price = Double.parseDouble(parts[3]);
-//                    // Assuming you have a method to add vehicles to the dealership
-//                    dealership.addVehicle(new Vehicle(make, model, year, price));
+                String[] vehicleData = line.split("\\|");
+                int vin = Integer.parseInt(vehicleData[0]);
+                int year = Integer.parseInt(vehicleData[1]);
+                String make = vehicleData[2];
+                String model = vehicleData[3];
+                String vehicleType = vehicleData[4];
+                String color = vehicleData[5];
+                int odometer = Integer.parseInt(vehicleData[6]);
+                double price = Double.parseDouble(vehicleData[7]);
+                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                dealership.addVehicle(vehicle);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return null;
+        return dealership;
+    }
+
+    public static void saveDealership(Dealership dealership) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            // Writing dealership information
+            writer.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone());
+            writer.newLine();
+
+            // Writing vehicle information
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                writer.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
+                        vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" +
+                        vehicle.getOdometer() + "|" + vehicle.getPrice());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
-
-            //int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price
-
-//            return dealership;
-
-
-
-
-// save DDealership

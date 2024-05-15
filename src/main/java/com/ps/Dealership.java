@@ -1,18 +1,22 @@
 package com.ps;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Dealership {
+class Dealership {
     private String name;
     private String address;
-    private String phone; // why phone is string?
+    private String phone;
+    private ArrayList<Vehicle> inventory;
 
-    public Dealership(String name, String address, String phone, ArrayList<Vehicle> inventory) {
+    public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.inventory = inventory;
+        this.inventory = new ArrayList<>();
     }
+
+    // Getters and setters for name, address, and phone
 
     public String getName() {
         return name;
@@ -38,71 +42,79 @@ public class Dealership {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Dealership{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+    public List<Vehicle> getVehiclesByPrice(double min, double max) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-    //creating arraylist for inventory
-    ArrayList<Vehicle> inventory = new ArrayList<>(); // declaring a new arraylist (inventory) which will hold all the vehicles
+    public List<Vehicle> getVehiclesByMakeModel(String make, String model) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
+    }
 
-    public void addVehicle(Vehicle vehicle){
+    // Implement other search methods similarly
+
+    public List<Vehicle> getAllVehicles() {
+        return new ArrayList<>(inventory);
+    }
+
+    public void addVehicle(Vehicle vehicle) {
         inventory.add(vehicle);
     }
 
-    public ArrayList<Vehicle> getAllVehicles(){
-        return this.inventory;
-    }
-
-    public void removeVehicle(Vehicle vehicle){
+    public void removeVehicle(Vehicle vehicle) {
         inventory.remove(vehicle);
     }
 
-    //methods
-    public static ArrayList<Vehicle> getVehiclesByPrice(double min, double max){
-        ArrayList<Vehicle> vehiclesByPrice = new ArrayList<>();
-        //condition for getting price ranged vehicle
-
-        return vehiclesByPrice;
+    public List<Vehicle> getVehiclesByYear(int min, int max) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getYear() >= min && vehicle.getYear() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model){
-        ArrayList<Vehicle> vehiclesByMakeModel = new ArrayList<>();
-        //condition for getting specific make model vehicle
-
-        return vehiclesByMakeModel;
+    public List<Vehicle> getVehiclesByColor(String color) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getColor().equalsIgnoreCase(color)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByYear(int minYear, int maxYear){
-        ArrayList<Vehicle> vehiclesByYear = new ArrayList<>();
-        //condition for getting specific year ranged vehicle
-
-        return vehiclesByYear;
+    public List<Vehicle> getVehiclesByMileage(int min, int max) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getOdometer() >= min && vehicle.getOdometer() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
-    public static ArrayList<Vehicle> getVehiclesByColor(String color){
-        ArrayList<Vehicle> vehiclesByColor = new ArrayList<>();
-        //condition for getting specific color vehicle
-
-        return vehiclesByColor;
-    }
-
-    public static ArrayList<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage){
-        ArrayList<Vehicle> vehiclesByMileage = new ArrayList<>();
-        //condition for getting mileage ranged vehicle
-
-        return vehiclesByMileage;
-    }
-
-    public static ArrayList<Vehicle> getVehiclesByType(String vehicleType){
-        ArrayList<Vehicle> vehiclesByType = new ArrayList<>();
-        //condition for getting price ranged vehicle
-
-        return vehiclesByType;
+    public List<Vehicle> getVehiclesByType(String vehicleType) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 
 }
+
