@@ -82,6 +82,8 @@ This code was interesting to write because figuring out the position value of th
 ![ErrorSS.png](ErrorSS.png)
 
 
+The project met all the requirements described on project requirements (workshop 4 project file). Despite, it can be polished further for better usage.
+
 Project done by JARIN MAHMUD
 
 ### ----- End of Readme -----
