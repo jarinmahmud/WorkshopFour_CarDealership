@@ -9,6 +9,7 @@ class Dealership {
     private String phone;
     private ArrayList<Vehicle> inventory;
 
+    //Constructor
     public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
@@ -16,6 +17,7 @@ class Dealership {
         this.inventory = new ArrayList<>();
     }
 
+    //Getters
     public String getName() {
         return name;
     }
@@ -56,14 +58,6 @@ class Dealership {
         return new ArrayList<>(inventory);
     }
 
-    public void addVehicle(Vehicle vehicle) {
-        inventory.add(vehicle);
-    }
-
-    public void removeVehicle(Vehicle vehicle) {
-        inventory.remove(vehicle);
-    }
-
     public List<Vehicle> getVehiclesByYear(int min, int max) {
         List<Vehicle> result = new ArrayList<>();
         for (Vehicle vehicle : inventory) {
@@ -73,7 +67,6 @@ class Dealership {
         }
         return result;
     }
-
     public List<Vehicle> getVehiclesByColor(String color) {
         List<Vehicle> result = new ArrayList<>();
         for (Vehicle vehicle : inventory) {
@@ -102,6 +95,16 @@ class Dealership {
             }
         }
         return result;
+    }
+
+    //adding vehicle
+    public void addVehicle(Vehicle vehicle) {
+        inventory.add(vehicle);
+    }
+
+    //removing vehicle
+    public void removeVehicle(Vehicle vehicle) {
+        inventory.remove(vehicle);
     }
 
 }

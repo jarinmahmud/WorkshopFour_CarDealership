@@ -6,6 +6,28 @@ import java.util.Scanner;
 public class UserInterface {
     private Dealership dealership;
 
+    //creating object of dealership here
+    private void init() {
+        DealershipFileManager fileManager = new DealershipFileManager();
+        dealership = fileManager.getDealership();
+    }
+
+    //Home Prompt
+    private void displayMenu() {
+        System.out.println("Welcome to Car Dealership CLI Application");
+        System.out.println("--------------------------------------------------------");
+        System.out.println("1. Find vehicles within a price range");
+        System.out.println("2. Find vehicles by make/model");
+        System.out.println("3. Find vehicles by year range");
+        System.out.println("4. Find vehicles by color");
+        System.out.println("5. Find vehicles by mileage range");
+        System.out.println("6. Find vehicles by type");
+        System.out.println("7. List all vehicles");
+        System.out.println("8. Add a vehicle");
+        System.out.println("9. Remove a vehicle");
+        System.out.println("99. Quit");
+        System.out.println("Enter your choice:");
+    }
     public void display() {
         init();
         Scanner scanner = new Scanner(System.in);
@@ -55,27 +77,6 @@ public class UserInterface {
         scanner.close();
     }
 
-    private void init() {
-        DealershipFileManager fileManager = new DealershipFileManager();
-        dealership = fileManager.getDealership();
-    }
-
-    private void displayMenu() {
-        System.out.println("Welcome to Car Dealership CLI Application");
-        System.out.println("--------------------------------------------------------");
-        System.out.println("1. Find vehicles within a price range");
-        System.out.println("2. Find vehicles by make/model");
-        System.out.println("3. Find vehicles by year range");
-        System.out.println("4. Find vehicles by color");
-        System.out.println("5. Find vehicles by mileage range");
-        System.out.println("6. Find vehicles by type");
-        System.out.println("7. List all vehicles");
-        System.out.println("8. Add a vehicle");
-        System.out.println("9. Remove a vehicle");
-        System.out.println("99. Quit");
-        System.out.println("Enter your choice:");
-    }
-
     private void displayVehicles(List<Vehicle> vehicles) {
         if (vehicles.isEmpty()) {
             System.out.println("No vehicles found.");
@@ -92,6 +93,7 @@ public class UserInterface {
             System.out.println("-------------------------------------------------------------");
         }
     }
+
     private void processAddVehicleRequest(Scanner scanner) {
         System.out.print("Enter vehicle details (vin, year, make, model, type, color, odometer, price): ");
         String[] vehicleDetails = scanner.nextLine().split(",");

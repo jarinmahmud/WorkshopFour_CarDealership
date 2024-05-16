@@ -8,6 +8,7 @@ import java.io.FileWriter;
 public class DealershipFileManager {
     private static final String FILE_PATH = "workData.txt";
 
+    //reading vehicle information
     public static Dealership getDealership() {
         Dealership dealership = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
@@ -38,6 +39,7 @@ public class DealershipFileManager {
         return dealership;
     }
 
+    //storing vehicle information
     public static void saveDealership(Dealership dealership) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             // Writing dealership information

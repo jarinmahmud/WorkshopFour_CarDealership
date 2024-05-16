@@ -10,6 +10,7 @@ class Vehicle {
     private int odometer;
     private double price;
 
+    //Constructor
     public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
         this.vin = vin;
         this.year = year;
@@ -21,7 +22,7 @@ class Vehicle {
         this.price = price;
     }
 
-
+    //Getters
     public int getVin() {
         return vin;
     }
