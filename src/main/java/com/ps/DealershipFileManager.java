@@ -5,8 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DealershipFileManager {
     private static final String FILE_PATH = "workData.txt";
@@ -35,8 +33,8 @@ public class DealershipFileManager {
                 Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
                 dealership.addVehicle(vehicle);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+
         }
         return dealership;
     }
@@ -54,8 +52,8 @@ public class DealershipFileManager {
                         vehicle.getOdometer() + "|" + vehicle.getPrice());
                 writer.newLine();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+
         }
     }
 }

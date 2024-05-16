@@ -14,29 +14,26 @@ public class UserInterface {
         while (running) {
             displayMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    // Process getByPrice request
+                    processGetByPriceRequest(scanner);
                     break;
                 case 2:
-                    // Process getByMakeModel request
+                    processGetByMakeModelRequest(scanner);
+
                     break;
                 case 3:
-                    // Process getByYear request
                     processGetByYearRequest(scanner);
                     break;
                 case 4:
-                    // Process getByColor request
                     processGetByColorRequest(scanner);
                     break;
                 case 5:
-                    // Process getByMileage request
                     processGetByMileageRequest(scanner);
                     break;
                 case 6:
-                    // Process getByVehicleType request
                     processGetByVehicleTypeRequest(scanner);
                     break;
                 case 7:
@@ -64,12 +61,13 @@ public class UserInterface {
     }
 
     private void displayMenu() {
-        System.out.println("Menu:");
+        System.out.println("Welcome to Car Dealership CLI Application");
+        System.out.println("--------------------------------------------------------");
         System.out.println("1. Find vehicles within a price range");
         System.out.println("2. Find vehicles by make/model");
         System.out.println("3. Find vehicles by year range");
         System.out.println("4. Find vehicles by color");
-        System.out.println("5. Find vehicles by mileage range");
+        System.out.println("5. Find vehiclesq1   by mileage range");
         System.out.println("6. Find vehicles by type");
         System.out.println("7. List all vehicles");
         System.out.println("8. Add a vehicle");
@@ -148,6 +146,24 @@ public class UserInterface {
         System.out.print("Enter color: ");
         String color = scanner.nextLine();
         List<Vehicle> vehicles = dealership.getVehiclesByColor(color);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByPriceRequest(Scanner scanner) {
+        System.out.print("Enter minimum price: ");
+        int minPrice = scanner.nextInt();
+        System.out.print("Enter maximum price: ");
+        int maxPrice = scanner.nextInt();
+        List<Vehicle> vehicles = dealership.getVehiclesByPrice(minPrice,maxPrice);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByMakeModelRequest(Scanner scanner) {
+        System.out.print("Enter Make: ");
+        String make = scanner.nextLine();
+        System.out.print("Enter Model: ");
+        String model = scanner.nextLine();
+        List<Vehicle> vehicles = dealership.getVehiclesByMakeModel(make, model);
         displayVehicles(vehicles);
     }
 

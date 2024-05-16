@@ -16,31 +16,20 @@ class Dealership {
         this.inventory = new ArrayList<>();
     }
 
-    // Getters and setters for name, address, and phone
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public List<Vehicle> getVehiclesByPrice(double min, double max) {
         List<Vehicle> result = new ArrayList<>();
@@ -62,7 +51,6 @@ class Dealership {
         return result;
     }
 
-    // Implement other search methods similarly
 
     public List<Vehicle> getAllVehicles() {
         return new ArrayList<>(inventory);
